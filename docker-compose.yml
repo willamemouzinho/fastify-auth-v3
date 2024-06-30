@@ -1,0 +1,26 @@
+services:
+  postgres:
+    image: bitnami/postgresql:latest
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=willame
+      - POSTGRES_PASSWORD=willame
+      - POSTGRES_DB=authentication
+    volumes:
+      - authentication_pg_data:/bitnami/postgresql
+
+  redis:
+    image: bitnami/redis:latest
+    ports:
+      - '6379:6379'
+    environment:
+      - REDIS_PASSWORD=willame
+    volumes:
+      - 'authentication_redis_data:/bitnami/redis/data'
+
+volumes:
+  authentication_pg_data:
+    driver: local
+  authentication_redis_data:
+    driver: local
